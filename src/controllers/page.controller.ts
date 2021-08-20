@@ -1,13 +1,16 @@
 import { Request, Response } from 'express';
 import { Banner } from '../types/banner';
 import { createMenuObject } from '../helpers/createMenuObject';
+import { Pet } from '../models/Pet';
 
 export const home = (req: Request, res: Response) => {
     let banner: Banner = {
         title: 'Todos os animais',
         background: 'allanimals.jpg'
     }
-    res.render('pages/page', { menu: createMenuObject('all'), banner });
+
+    let list = Pet.getAll();
+    res.render('pages/page', { menu: createMenuObject('all'), banner, list });
 }
 
 export const dogs = (req: Request, res: Response) => {
@@ -15,7 +18,8 @@ export const dogs = (req: Request, res: Response) => {
         title: 'Cachorros',
         background: 'banner_dog.jpg'
     }
-    res.render('pages/page', { menu: createMenuObject('dog'), banner });
+    let list = Pet.getFromType('dog');
+    res.render('pages/page', { menu: createMenuObject('dog'), banner, list });
 }
 
 export const cats = (req: Request, res: Response) => {
@@ -23,7 +27,8 @@ export const cats = (req: Request, res: Response) => {
         title: 'Gatos',
         background: 'banner_cat.jpg'
     }
-    res.render('pages/page', {  menu: createMenuObject('cat'), banner });
+    let list = Pet.getFromType('cat');
+    res.render('pages/page', {  menu: createMenuObject('cat'), banner, list });
 }
 
 export const fishes = (req: Request, res: Response) => {
@@ -31,5 +36,6 @@ export const fishes = (req: Request, res: Response) => {
         title: 'Peixes',
         background: 'banner_fish.jpg'
     }
-    res.render('pages/page', { menu: createMenuObject('fish'), banner });
+    let list = Pet.getFromType('fish');
+    res.render('pages/page', { menu: createMenuObject('fish'), banner, list });
 }
