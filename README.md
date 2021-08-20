@@ -7,5 +7,11 @@ Projeto para fins de estudo utilizando NodeJS + Typescript
 ### Instalação
 `npm install`
 
-### Para rodar o projeto em desenvolvimento
+### Para executar o projeto em desenvolvimento
 `npm run dev`
+
+### Para preparar o projeto para distribuição
+`npm run postinstall`
+
+### Para executar o projeto em produção
+`npm start`
