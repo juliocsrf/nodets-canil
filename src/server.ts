@@ -1,7 +1,9 @@
-import express from 'express';
+import express, { Request, Response } from 'express';
 import dotenv from 'dotenv';
 import mustache from 'mustache-express';
 import path from 'path';
+
+import mainRoutes from './routes';
 
 console.log('Server starting...');
 
@@ -14,6 +16,12 @@ server.set('views', path.join(__dirname, 'views'));
 server.engine('mustache', mustache());
 
 server.use(express.static(path.join(__dirname, '../public')));
+
+// ROTAS
+server.use(mainRoutes);
+server.use((req: Request, res: Response)=>{
+    res.send('Página não encontrada!');
+})
 
 server.listen(process.env.PORT);
 console.log(`Server running on port ${process.env.PORT}`);
